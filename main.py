@@ -40,6 +40,7 @@ dp.update.middleware(LoggingMiddleware())
 TEST_OF_HELP = """
 /start - Start
 /help - Help
+/test_args - Test args <name> <age> <city>
 """
 
 @dp.message(Command("start"))
