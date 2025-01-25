@@ -1,4 +1,3 @@
-import aiofiles
 from aiogram import  types
 from aiogram.types import FSInputFile, URLInputFile, BufferedInputFile
 from config.settings import settings
