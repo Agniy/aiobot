@@ -13,8 +13,8 @@ from handlers import (
     cmd_help,
     echo_message,
     cmd_image,
+    cmd_video
 )
-from handlers.cmd_image import cmd_image
 from middleware import LoggingMiddleware
 
 from api_token import TOKEN
@@ -39,6 +39,7 @@ class TelegramBot:
         self.dp.message.register(cmd_sticker, Command("sticker"))
         self.dp.message.register(cmd_dice, Command("dice"))
         self.dp.message.register(cmd_image, Command("image"))
+        self.dp.message.register(cmd_video, Command("video"))
         self.dp.message.register(echo_message)
 
 
