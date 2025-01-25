@@ -1,10 +1,11 @@
 import asyncio
 import logging
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F, html
 from aiogram.filters.command import Command, CommandObject
 from aiogram.types import Update
 from typing import Any, Awaitable, Callable
 from api_token import TOKEN
+from aiogram.enums import ParseMode, DiceEmoji
 
 logging.basicConfig(
     level=logging.INFO,
@@ -45,7 +46,7 @@ TEST_OF_HELP = """
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("Hello!")
+    await message.answer(f"Hello, {html.bold(message.from_user.full_name)}!", parse_mode=ParseMode.HTML)
 
 @dp.message(Command("test_args"))
 async def cmd_test_args(message: types.Message, command: CommandObject):
@@ -60,6 +61,30 @@ async def cmd_test_args(message: types.Message, command: CommandObject):
         return
 
     await message.answer(f"Ваше имя: {name}, Ваш возраст: {age}, Ваш город: {city}")
+
+@dp.message(F.text, Command("text"))
+async def cmd_text(message: types.Message):
+
+    # html
+    await message.answer(
+        f"<i> Я курсивный </i>\n<b> Я жирный </b>\n<u> Я подчеркнутый </u>",
+        parse_mode=ParseMode.HTML
+    )
+    # markdown_v2
+    await message.answer(
+        f"|| Я спойлер ||\n ~ Я зачеркнутый ~",
+        parse_mode=ParseMode.MARKDOWN_V2
+    )
+
+@dp.message(Command("sticker"))
+async def cmd_sticker(message: types.Message):
+    await message.answer_sticker(
+        sticker="CAACAgIAAxkBAAENoU5nlKuU7_gnxA1a-7H1SSwgYo5nugACdEoAAqwq4Ur3PIAgM2uiVTYE"
+    )
+
+@dp.message(Command("dice"))
+async def cmd_dice(message: types.Message):
+    await message.answer_dice(emoji=DiceEmoji.BOWLING)
 
 @dp.message(Command("help", prefix="/"))
 async def cmd_help(message: types.Message):
