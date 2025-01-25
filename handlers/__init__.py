@@ -8,6 +8,7 @@ from .echo_message import echo_message
 from .cmd_image import cmd_image
 from .cmd_video import cmd_video
 from .cmd_group import cmd_group
+from .cmd_audio import cmd_audio
 
 __all__ = [
     'cmd_start',
@@ -19,5 +20,6 @@ __all__ = [
     'cmd_image',
     'cmd_video',
     'cmd_group',
+    'cmd_audio',
     'echo_message'
 ]
