@@ -10,6 +10,7 @@ from .cmd_video import cmd_video
 from .cmd_group import cmd_group
 from .cmd_audio import cmd_audio
 from .cmd_file import cmd_file
+from .cmd_location import cmd_location
 
 __all__ = [
     'cmd_start',
@@ -23,5 +24,6 @@ __all__ = [
     'cmd_group',
     'cmd_audio',
     'cmd_file',
+    'cmd_location',
     'echo_message'
 ]
