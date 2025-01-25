@@ -9,6 +9,7 @@ from .cmd_image import cmd_image
 from .cmd_video import cmd_video
 from .cmd_group import cmd_group
 from .cmd_audio import cmd_audio
+from .cmd_file import cmd_file
 
 __all__ = [
     'cmd_start',
@@ -21,5 +22,6 @@ __all__ = [
     'cmd_video',
     'cmd_group',
     'cmd_audio',
+    'cmd_file',
     'echo_message'
 ]

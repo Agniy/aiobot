@@ -15,7 +15,8 @@ from handlers import (
     cmd_image,
     cmd_video,
     cmd_group,
-    cmd_audio
+    cmd_audio,
+    cmd_file
 )
 from middleware import LoggingMiddleware
 
@@ -44,6 +45,7 @@ class TelegramBot:
         self.dp.message.register(cmd_video, Command("video"))
         self.dp.message.register(cmd_group, Command("group"))
         self.dp.message.register(cmd_audio, Command("audio"))
+        self.dp.message.register(cmd_file, Command("file"))
         self.dp.message.register(echo_message)
 
 
