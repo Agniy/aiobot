@@ -13,7 +13,8 @@ from handlers import (
     cmd_help,
     echo_message,
     cmd_image,
-    cmd_video
+    cmd_video,
+    cmd_group,
 )
 from middleware import LoggingMiddleware
 
@@ -40,6 +41,7 @@ class TelegramBot:
         self.dp.message.register(cmd_dice, Command("dice"))
         self.dp.message.register(cmd_image, Command("image"))
         self.dp.message.register(cmd_video, Command("video"))
+        self.dp.message.register(cmd_group, Command("group"))
         self.dp.message.register(echo_message)
 
 
