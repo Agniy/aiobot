@@ -11,8 +11,10 @@ from handlers import (
     cmd_sticker,
     cmd_dice,
     cmd_help,
-    echo_message
+    echo_message,
+    cmd_image,
 )
+from handlers.cmd_image import cmd_image
 from middleware import LoggingMiddleware
 
 from api_token import TOKEN
@@ -36,7 +38,9 @@ class TelegramBot:
         self.dp.message.register(cmd_text, F.text, Command("text"))
         self.dp.message.register(cmd_sticker, Command("sticker"))
         self.dp.message.register(cmd_dice, Command("dice"))
+        self.dp.message.register(cmd_image, Command("image"))
         self.dp.message.register(echo_message)
+
 
     async def start(self):
         logger.info("Bot started")

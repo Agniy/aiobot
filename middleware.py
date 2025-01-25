@@ -7,7 +7,7 @@ from aiogram.types import Update
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='bot_logs.log'
+    filename='logs/bot_logs.log'
 )
 logger = logging.getLogger(__name__)
 
