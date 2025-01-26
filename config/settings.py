@@ -1,6 +1,8 @@
 from pathlib import Path
 from dataclasses import dataclass
 from typing import Final
+import os
+from dotenv import load_dotenv
 
 @dataclass
 class Settings:
@@ -13,6 +15,14 @@ class Settings:
     # Files
     LOG_FILE: Final[Path] = LOGS_DIR / "bot_logs.log"
     ENV_FILE: Final[Path] = ROOT_DIR / ".env"
+
+    # Bot settings
+    TOKEN: Final[str] = ""
+
+    def __post_init__(self):
+        load_dotenv(self.ENV_FILE)
+        self.TOKEN = os.getenv("BOT_TOKEN", "")
+        self.create_directories()
 
     # Create required directories
     def create_directories(self) -> None:

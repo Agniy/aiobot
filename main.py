@@ -20,14 +20,13 @@ from handlers import (
     cmd_location,
 )
 from middleware import LoggingMiddleware
-
-from api_token import TOKEN
+from config.settings import settings
 
 logger = logging.getLogger(__name__)
 
 class TelegramBot:
     def __init__(self):
-        self.bot = Bot(token=TOKEN)
+        self.bot = Bot(token=settings.TOKEN)
         self.dp = Dispatcher()
         self._setup_middleware()
         self._setup_handlers()
