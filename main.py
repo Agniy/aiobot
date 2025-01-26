@@ -18,6 +18,7 @@ from handlers import (
     cmd_audio,
     cmd_file,
     cmd_location,
+    cmd_buttons,
     DownloadPhoto
 )
 from middleware import LoggingMiddleware
@@ -48,9 +49,9 @@ class TelegramBot:
         self.dp.message.register(cmd_audio, Command("audio"))
         self.dp.message.register(cmd_file, Command("file"))
         self.dp.message.register(cmd_location, Command("location"))
+        self.dp.message.register(cmd_buttons, Command("buttons"))
 
-        download_photo_handler = DownloadPhoto(self.bot)
-        self.dp.message.register(download_photo_handler.download_photo, F.photo)
+        self.dp.message.register(DownloadPhoto(self.bot).download_photo, F.photo)
 
         self.dp.message.register(echo_message)
 
