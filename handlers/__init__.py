@@ -11,6 +11,7 @@ from .cmd_group import cmd_group
 from .cmd_audio import cmd_audio
 from .cmd_file import cmd_file
 from .cmd_location import cmd_location
+from .download_photo import DownloadPhoto
 
 __all__ = [
     'cmd_start',
@@ -25,5 +26,6 @@ __all__ = [
     'cmd_audio',
     'cmd_file',
     'cmd_location',
-    'echo_message'
+    'echo_message',
+    'DownloadPhoto'
 ]

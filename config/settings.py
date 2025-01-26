@@ -11,6 +11,7 @@ class Settings:
     HANDLERS_DIR: Final[Path] = ROOT_DIR / "handlers"
     LOGS_DIR: Final[Path] = ROOT_DIR / "logs"
     STATIC_DIR: Final[Path] = ROOT_DIR / "static"
+    MEDIA_DIR: Final[Path] = ROOT_DIR / "media"
 
     # Files
     LOG_FILE: Final[Path] = LOGS_DIR / "bot_logs.log"
@@ -28,6 +29,7 @@ class Settings:
     def create_directories(self) -> None:
         self.LOGS_DIR.mkdir(exist_ok=True)
         self.STATIC_DIR.mkdir(exist_ok=True)
+        self.MEDIA_DIR.mkdir(exist_ok=True)
 
 # Create singleton instance
 settings = Settings()
