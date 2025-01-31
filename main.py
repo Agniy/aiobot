@@ -19,6 +19,8 @@ from handlers import (
     cmd_file,
     cmd_location,
     cmd_buttons,
+    cmd_many_buttons,
+    cmd_by_row_buttons,
     DownloadPhoto
 )
 from middleware import LoggingMiddleware
@@ -50,8 +52,9 @@ class TelegramBot:
         self.dp.message.register(cmd_file, Command("file"))
         self.dp.message.register(cmd_location, Command("location"))
         self.dp.message.register(cmd_buttons, Command("buttons"))
-
         self.dp.message.register(DownloadPhoto(self.bot).download_photo, F.photo)
+        self.dp.message.register(cmd_many_buttons, Command("many_buttons"))
+        self.dp.message.register(cmd_by_row_buttons, Command("by_row_buttons"))
 
         self.dp.message.register(echo_message)
 
