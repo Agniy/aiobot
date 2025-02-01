@@ -21,7 +21,13 @@ from handlers import (
     cmd_buttons,
     cmd_many_buttons,
     cmd_by_row_buttons,
-    DownloadPhoto
+    cmd_inline_buttons,
+    cmd_random_number,
+    cmd_random_number_callback,
+    DownloadPhoto,
+
+    how_are_you_handler,
+    random_number_summ_handler
 )
 from middleware import LoggingMiddleware
 from config.settings import settings
@@ -33,7 +39,12 @@ class TelegramBot:
         self.bot = Bot(token=settings.TOKEN)
         self.dp = Dispatcher()
         self._setup_middleware()
-        self._setup_handlers()
+
+        # set up handlers on the root level
+        # self._setup_handlers()
+
+        # set up handlers on the router level
+        self._setup_routers()
 
     def _setup_middleware(self):
         self.dp.update.middleware(LoggingMiddleware())
@@ -54,10 +65,17 @@ class TelegramBot:
         self.dp.message.register(cmd_buttons, Command("buttons"))
         self.dp.message.register(DownloadPhoto(self.bot).download_photo, F.photo)
         self.dp.message.register(cmd_many_buttons, Command("many_buttons"))
+        self.dp.message.register(cmd_inline_buttons, Command("inline_buttons"))
         self.dp.message.register(cmd_by_row_buttons, Command("by_row_buttons"))
+
+        self.dp.message.register(cmd_random_number, Command("random_number"))
+        self.dp.callback_query.register(cmd_random_number_callback)
 
         self.dp.message.register(echo_message)
 
+    def _setup_routers(self):
+        self.dp.include_router(how_are_you_handler.router)
+        self.dp.include_router(random_number_summ_handler.router)
 
     async def start(self):
         logger.info("Bot started")

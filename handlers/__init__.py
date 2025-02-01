@@ -13,6 +13,7 @@ from .cmd_file import cmd_file
 from .cmd_location import cmd_location
 from .cmd_buttons import cmd_buttons
 from .cmd_many_buttons import cmd_many_buttons, cmd_by_row_buttons
+from .cmd_inline_buttons import cmd_inline_buttons, cmd_random_number, cmd_random_number_callback
 from .download_photo import DownloadPhoto
 
 __all__ = [
@@ -32,5 +33,8 @@ __all__ = [
     'cmd_buttons',
     'cmd_many_buttons',
     'cmd_by_row_buttons',
+    'cmd_inline_buttons',
+    'cmd_random_number',
+    'cmd_random_number_callback',
     'DownloadPhoto'
 ]
