@@ -27,7 +27,8 @@ from handlers import (
     DownloadPhoto,
 
     how_are_you_handler,
-    random_number_summ_handler
+    random_number_summ_handler,
+    magic_test_handler,
 )
 from middleware import LoggingMiddleware
 from config.settings import settings
@@ -74,8 +75,9 @@ class TelegramBot:
         self.dp.message.register(echo_message)
 
     def _setup_routers(self):
-        self.dp.include_router(how_are_you_handler.router)
+        self.dp.include_routers(how_are_you_handler.router)
         self.dp.include_router(random_number_summ_handler.router)
+        self.dp.include_router(magic_test_handler.router)
 
     async def start(self):
         logger.info("Bot started")
