@@ -2,12 +2,13 @@ import logging
 from typing import Any, Awaitable, Callable
 
 from aiogram.types import Update
+from config.settings import settings
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='logs/bot_logs.log'
+    filename=settings.LOGS_DIR / 'bot_logs.log'
 )
 logger = logging.getLogger(__name__)
 

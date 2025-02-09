@@ -29,8 +29,10 @@ from handlers import (
     how_are_you_handler,
     random_number_summ_handler,
     magic_test_handler,
+    test_middleware_counter
 )
-from middleware import LoggingMiddleware
+from middleware.logging_middleware import LoggingMiddleware
+from middleware.test_middleware import CounterMiddleware
 from config.settings import settings
 
 logger = logging.getLogger(__name__)
@@ -49,6 +51,7 @@ class TelegramBot:
 
     def _setup_middleware(self):
         self.dp.update.middleware(LoggingMiddleware())
+        self.dp.update.middleware(CounterMiddleware())
 
     def _setup_handlers(self):
         self.dp.message.register(cmd_start, Command("start"))
@@ -78,6 +81,7 @@ class TelegramBot:
         self.dp.include_routers(how_are_you_handler.router)
         self.dp.include_router(random_number_summ_handler.router)
         self.dp.include_router(magic_test_handler.router)
+        self.dp.include_router(test_middleware_counter.router)
 
     async def start(self):
         logger.info("Bot started")
